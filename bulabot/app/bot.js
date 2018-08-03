@@ -8,8 +8,8 @@ const bot = new MessengerBot({
 });
 
 bot.onEvent(async context => {
-  context.markSeen();
-  context.sendSenderAction('typing_on');
+  await context.markSeen();
+  await context.sendSenderAction('typing_on');
   if (context.event.isText) {
     switch (context.event.text) {
       case 'start':
