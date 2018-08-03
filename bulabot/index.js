@@ -9,11 +9,28 @@ const bot = new MessengerBot({
 });
 
 bot.onEvent(async context => {
-  await context.sendText('Hello World');
+  await context.sendText('Hello World!');
+  if (context.event.isText) {
+    switch (context.event.text) {
+      case 'start':
+        await context.sendText('Running....');
+        break;
+      case 'help':
+        await context.sendText(`
+start   start to run
+help    quick help on <command>
+        `);
+        break;
+      default:
+        await context.sendText(`${context.event.text} is not a valid command.`);
+    }
+  }
 });
 
-const server = createServer(bot);
+const server = createServer(bot, {
+  verifyToken: config.verifyToken,
+});
 
-server.listen(5000, () => {
-  console.log('server is running on 5000 port...');
+server.listen(3000, () => {
+  console.log('server is running on 3000 port...');
 });
