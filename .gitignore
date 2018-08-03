@@ -1,5 +1,5 @@
 # Taken from https://github.com/github/gitignore/blob/master/Node.gitignore
-
+bulabot/bottender.config.js
 # Logs
 bulabot/logs
 bulabot/*.log
